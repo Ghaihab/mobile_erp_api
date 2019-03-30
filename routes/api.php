@@ -46,3 +46,6 @@ Route::post('custody/request/reject/{id}', CustodyRequestsController::class . "@
 
 //------------------------------------------------ Employee Custodies ------------------------------------------------//
 Route::get('custodies', EmployeeController::class . "@custodies");
+Route::get('lookup/cutodies', function(){
+    return \App\Models\Custody::all();
+});

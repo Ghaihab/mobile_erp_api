@@ -10,7 +10,7 @@ class CustodyRequestsController extends Controller
 {
     public function index()
     {
-        return CustodyRequest::all();
+        return CustodyRequest::with('custody')->get();
     }
     public function showManagerRequests()
     {

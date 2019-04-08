@@ -33,33 +33,36 @@ class VacationRequestsController extends Controller
         ]);
     }
 
-    public function acceptManager(VacationRequest $request)
+    public function acceptManager($id)
     {
-        $request->status = VacationRequest::STATUS_UNDER_HR_APPROVAL;
-        $request->save();
-        $this->accept($request);
+        $vacationRequest = VacationRequest::findOrFail($id);
+        $vacationRequest->status = VacationRequest::STATUS_UNDER_HR_APPROVAL;
+        $vacationRequest->save();
+        $this->accept($vacationRequest);
     }
 
-    public function acceptHR(VacationRequest $request)
+    public function acceptHR($id)
     {
-        $request->status = VacationRequest::STATUS_APPROVED;
-        $request->save();
-        $this->accept($request);
+        $vacationRequest = VacationRequest::findOrFail($id);
+        $vacationRequest->status = VacationRequest::STATUS_APPROVED;
+        $vacationRequest->save();
+        $this->accept($vacationRequest);
     }
 
-    public function reject(VacationRequest $request)
+    public function reject($id)
     {
-        $request->status = VacationRequest::STATUS_REJECTED;
-        $request->save();
+        $vacationRequest = VacationRequest::findOrFail($id);
+        $vacationRequest->status = VacationRequest::STATUS_REJECTED;
+        $vacationRequest->save();
     }
 
-    private function accept(VacationRequest $request)
+    private function accept(VacationRequest $vacationRequest)
     {
         /** @var User $user */
-        $user = User::findOrFail($request->employee_id);
+        $user = User::findOrFail($vacationRequest->employee_id);
 
         $user->vacations()->attach([
-            'vacation_id' => $request->vacation_id
+            $vacationRequest->vacation_id
         ]);
     }
 

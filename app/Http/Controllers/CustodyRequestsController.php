@@ -60,6 +60,7 @@ class CustodyRequestsController extends Controller
     {
         /** @var User $user */
         $user = User::findOrFail($custodyRequest->employee_id);
+
         $user->custodies()->attach([
             $custodyRequest->custody_id
         ]);

@@ -21,7 +21,7 @@ class VacationRequestsController extends Controller
     public function create(Request $request)
     {
         VacationRequest::create([
-            'employee_id' => auth()->user->id,
+            'employee_id' => auth()->user()->id,
             'vacation_id' => $request->vacation_id,
             'status'      => VacationRequest::STATUS_UNDER_MANAGER_APPROVAL,
         ]);

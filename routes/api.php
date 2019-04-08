@@ -20,6 +20,7 @@ Route::post('/login', 'AuthController@login');
 Route::post('/logout', 'AuthController@logout');
 //------------------------------------------------ Vacation Requests -------------------------------------------------//
 
+Route::get('vacation/requests', VacationRequestsController::class . "@index");
 Route::get('vacation/manager/requests', VacationRequestsController::class . "@showManagerRequests");
 Route::get('vacation/hr/requests', VacationRequestsController::class . "@showHrRequests");
 Route::post('vacation/requests/create', VacationRequestsController::class . "@create");

@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class VacationRequestsController extends Controller
 {
+
+    public function index()
+    {
+        return VacationRequest::with('vacation')->get();
+    }
+
     public function showManagerRequests()
     {
         return VacationRequest::where('status' , VacationRequest::STATUS_UNDER_MANAGER_APPROVAL)->get();

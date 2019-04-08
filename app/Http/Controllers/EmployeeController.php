@@ -11,5 +11,10 @@ class EmployeeController extends Controller
         return auth()->user()->custodies;
     }
 
+    public function vacations()
+    {
+        return auth()->user()->vacations;
+    }
+
 
 }

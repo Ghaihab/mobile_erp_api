@@ -12,6 +12,7 @@ class CustodyRequestsController extends Controller
     {
         return CustodyRequest::with('custody')->get();
     }
+
     public function showManagerRequests()
     {
         return CustodyRequest::where('status' , CustodyRequest::STATUS_UNDER_MANAGER_APPROVAL)->get();

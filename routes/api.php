@@ -50,6 +50,10 @@ Route::get('custodies', EmployeeController::class . "@custodies");
 
 Route::get('vacations', EmployeeController::class . "@vacations");
 
+Route::get('user', function(){
+   return auth()->user();
+});
+
 Route::get('lookup/custodies', function(){
     return \App\Models\Custody::all();
 });

@@ -18,8 +18,9 @@ class EmployeeController extends Controller
 
     public function changePassword()
     {
-        dd(auth()->user());
-        return auth()->user()->setPasswordAttribute(request('password'));
+        $user = auth()->user();
+        $user->setPasswordAttribute(request('password'));
+        $user->save();
     }
 
 

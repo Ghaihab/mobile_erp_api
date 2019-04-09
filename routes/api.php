@@ -50,6 +50,8 @@ Route::get('custodies', EmployeeController::class . "@custodies");
 
 Route::get('vacations', EmployeeController::class . "@vacations");
 
+Route::post('change/password', EmployeeController::class . "@changePassword");
+
 Route::get('user', function(){
    return auth()->user();
 });

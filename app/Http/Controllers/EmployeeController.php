@@ -16,5 +16,10 @@ class EmployeeController extends Controller
         return auth()->user()->vacations;
     }
 
+    public function changePassword()
+    {
+        return auth()->user()->setPasswordAttribute(request('password'));
+    }
+
 
 }

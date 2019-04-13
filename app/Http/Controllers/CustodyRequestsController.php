@@ -10,20 +10,20 @@ class CustodyRequestsController extends Controller
 {
     public function index()
     {
-        return CustodyRequest::with('custody')
+        return CustodyRequest::with('custody', 'employee')
             ->get();
     }
 
     public function showManagerRequests()
     {
-        return CustodyRequest::with('custody')
+        return CustodyRequest::with('custody', 'employee')
             ->where('status' , CustodyRequest::STATUS_UNDER_MANAGER_APPROVAL)
             ->get();
     }
 
     public function showHrRequests()
     {
-        return CustodyRequest::with('custody')
+        return CustodyRequest::with('custody', 'employee')
             ->where('status' , CustodyRequest::STATUS_UNDER_HR_APPROVAL)
             ->get();
     }

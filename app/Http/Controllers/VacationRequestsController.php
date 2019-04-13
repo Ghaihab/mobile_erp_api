@@ -11,17 +11,22 @@ class VacationRequestsController extends Controller
 
     public function index()
     {
-        return VacationRequest::with('vacation')->get();
+        return VacationRequest::with('vacation', 'employee')
+            ->get();
     }
 
     public function showManagerRequests()
     {
-        return VacationRequest::where('status' , VacationRequest::STATUS_UNDER_MANAGER_APPROVAL)->get();
+        return VacationRequest::with('vacation', 'employee')
+            ->where('status' , VacationRequest::STATUS_UNDER_MANAGER_APPROVAL)
+            ->get();
     }
 
     public function showHrRequests()
     {
-        return VacationRequest::where('status' , VacationRequest::STATUS_UNDER_HR_APPROVAL)->get();
+        return VacationRequest::with('vacation', 'employee')
+            ->where('status' , VacationRequest::STATUS_UNDER_HR_APPROVAL)
+            ->get();
     }
 
     public function create(Request $request)

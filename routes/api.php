@@ -29,6 +29,7 @@ Route::post('vacation/hr/request/accept/{id}', VacationRequestsController::class
 Route::post('vacation/request/reject/{id}', VacationRequestsController::class . "@reject");
 
 //------------------------------------------------ Upload Requests ---------------------------------------------------//
+Route::get('upload/requests', UploadRequestsController::class . "@index");
 Route::get('upload/manager/requests', UploadRequestsController::class . "@showManagerRequests");
 Route::get('upload/hr/requests', UploadRequestsController::class . "@showHrRequests");
 Route::post('upload/requests/create', UploadRequestsController::class . "@create");
@@ -49,6 +50,8 @@ Route::post('custody/request/reject/{id}', CustodyRequestsController::class . "@
 Route::get('custodies', EmployeeController::class . "@custodies");
 
 Route::get('vacations', EmployeeController::class . "@vacations");
+
+Route::get('uploads', EmployeeController::class . "@uploads");
 
 Route::post('change/password', EmployeeController::class . "@changePassword");
 

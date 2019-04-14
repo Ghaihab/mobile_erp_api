@@ -16,6 +16,11 @@ class EmployeeController extends Controller
         return auth()->user()->vacations;
     }
 
+    public function uploads()
+    {
+        return auth()->user()->uploads;
+    }
+
     public function changePassword()
     {
         $user = auth()->user();

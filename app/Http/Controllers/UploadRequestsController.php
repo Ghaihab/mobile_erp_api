@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class UploadRequestsController extends Controller
 {
+    public function index()
+    {
+        return UploadRequest::all();
+    }
+
     public function showManagerRequests()
     {
         return UploadRequest::where('status' , UploadRequest::STATUS_UNDER_MANAGER_APPROVAL)->get();
@@ -22,8 +27,8 @@ class UploadRequestsController extends Controller
     {
         UploadRequest::create([
             'employee_id' => auth()->user->id,
-            'file_name' => $request->file->file_name,
-            'file_type' => $request->file->file_type,
+//            'file_name' => $request->file->file_name,
+//            'file_type' => $request->file->file_type,
             'course_name' => $request->course_name,
             'training_place' => $request->training_palce,
             'expected_hours' => $request->expected_hours,
@@ -33,24 +38,27 @@ class UploadRequestsController extends Controller
         ]);
     }
 
-    public function acceptManager(UploadRequest $request)
+    public function acceptManager($id)
     {
-        $request->status = UploadRequest::STATUS_UNDER_HR_APPROVAL;
-        $request->save();
-        $this->accept($request);
+        $uploadRequest = UploadRequest::findOrFail($id);
+        $uploadRequest->status = UploadRequest::STATUS_UNDER_HR_APPROVAL;
+        $uploadRequest->save();
+        $this->accept($uploadRequest);
     }
 
-    public function acceptHR(UploadRequest $request)
+    public function acceptHR($id)
     {
-        $request->status = UploadRequest::STATUS_APPROVED;
-        $this->accept($request);
-        $request->save();
+        $uploadRequest = UploadRequest::findOrFail($id);
+        $uploadRequest ->status = UploadRequest::STATUS_APPROVED;
+        $this->accept($uploadRequest);
+        $uploadRequest->save();
     }
 
-    public function rejectManager(UploadRequest $request)
+    public function reject($id)
     {
-        $request->status = UploadRequest::STATUS_REJECTED;
-        $request->save();
+        $uploadRequest = UploadRequest::findOrFail($id);
+        $uploadRequest->status = UploadRequest::STATUS_REJECTED;
+        $uploadRequest->save();
     }
 
     private function accept(UploadRequest $request)
@@ -58,8 +66,8 @@ class UploadRequestsController extends Controller
         /** @var User $user */
         $user = User::findOrFail($request->employee_id);
         $user->uploads()->create([
-            'file_name' => $request->file_name,
-            'file_type' => $request->file_type,
+//            'file_name' => $request->file_name,
+//            'file_type' => $request->file_type,
             'course_name' => $request->course_name,
             'training_place' => $request->training_place,
             'expected_hours' => $request->expected_hours,

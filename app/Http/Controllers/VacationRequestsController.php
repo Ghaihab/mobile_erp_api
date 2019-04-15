@@ -34,6 +34,7 @@ class VacationRequestsController extends Controller
         VacationRequest::create([
             'employee_id' => auth()->user()->id,
             'vacation_id' => $request->vacation_id,
+            'number_of_days' => $request->number_of_days,
             'status'      => VacationRequest::STATUS_UNDER_MANAGER_APPROVAL,
         ]);
     }
@@ -66,8 +67,8 @@ class VacationRequestsController extends Controller
         /** @var User $user */
         $user = User::findOrFail($vacationRequest->employee_id);
 
-        $user->vacations()->attach([
-            $vacationRequest->vacation_id
+        $user->vacations()->attach($vacationRequest->vacation_id,[
+            'number_of_days' => $vacationRequest->number_of_days,
         ]);
     }
 

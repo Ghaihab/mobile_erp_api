@@ -65,7 +65,8 @@ class User extends Authenticatable implements JWTSubject
 
     public function vacations()
     {
-        return $this->belongsToMany(Vacation::class, 'employees_vacations', 'employee_id', 'vacation_id');
+        return $this->belongsToMany(Vacation::class, 'employees_vacations', 'employee_id', 'vacation_id')
+            ->withPivot('number_of_days');
     }
 
     public function uploads()

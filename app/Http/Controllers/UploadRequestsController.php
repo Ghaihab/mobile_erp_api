@@ -66,8 +66,8 @@ class UploadRequestsController extends Controller
         /** @var User $user */
         $user = User::findOrFail($request->employee_id);
         $user->uploads()->create([
-//            'file_name' => $request->file_name,
-//            'file_type' => $request->file_type,
+            'file_name' => '',
+            'file_type' => '',
             'course_name' => $request->course_name,
             'training_place' => $request->training_place,
             'expected_hours' => $request->expected_hours,

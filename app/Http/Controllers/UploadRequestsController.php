@@ -27,8 +27,8 @@ class UploadRequestsController extends Controller
     {
         UploadRequest::create([
             'employee_id' => auth()->user()->id,
-//            'file_name' => $request->file->file_name,
-//            'file_type' => $request->file->file_type,
+            'file_name' => '',
+            'file_type' => '',
             'course_name' => $request->course_name,
             'training_place' => $request->training_palce,
             'expected_hours' => $request->expected_hours,
